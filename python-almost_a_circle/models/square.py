@@ -1,11 +1,15 @@
 #!/usr/bin/python3
-""" module containing class square"""
+""" Module that contains class Square,
+inheritance of class Rectangle
+"""
 from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
-    """"Class square"""
+    """ Class Rectangle """
+
     def __init__(self, size, x=0, y=0, id=None):
+        """ Initializes instances """
         super().__init__(size, size, x, y, id)
 
     def __str__(self):
@@ -19,7 +23,7 @@ class Square(Rectangle):
 
     @property
     def size(self):
-        """Getter size"""
+        """ Getter size """
         return self.width
 
     @size.setter
@@ -56,12 +60,14 @@ class Square(Rectangle):
                     setattr(self, key, value)
 
     def to_dictionary(self):
-        """
-        returns dictonary
-        """
-        return {
-            "id": self.id,
-            "size": self.size,
-            "x": self.x,
-            "y": self.y
-        }
+        """ Returns a dictionary with attributes """
+        list_atr = ['id', 'size', 'x', 'y']
+        dict_res = {}
+
+        for key in list_atr:
+            if key == 'size':
+                dict_res[key] = getattr(self, 'width')
+            else:
+                dict_res[key] = getattr(self, key)
+
+        return dict_res
