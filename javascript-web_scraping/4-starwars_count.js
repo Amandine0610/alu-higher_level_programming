@@ -20,8 +20,4 @@ request(process.argv[2], function (error, response, body) {
     }
     console.log(finalResult);
   }
-<<<<<<< HEAD
 });
-=======
-});
->>>>>>> 78ad21b4b1370d1d248cc822fe9778d8a54683cb
