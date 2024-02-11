@@ -1,20 +1,23 @@
 #!/usr/bin/node
-
 const request = require('request');
-const url = process.argv[2];
-let count = 0;
-let data;
 
-request.get(url, function (err, res) {
-  if (err) {
-    console.log(err);
+request(process.argv[2], function (error, response, body) {
+  if (error) {
+    console.log(error);
   } else {
-    data = JSON.parse(res.body).results;
-    data.forEach((obj) => {
-      obj.characters.forEach((character) => {
-        if (character.includes('/18/')) count++;
-      });
-    });
+    const data = JSON.parse(body);
+    const movieCount = data.results.length;
+    let finalResult = 0;
+    // const comString = 'https://swapi-api.hbtn.io/api/people/18/';
+    for (let i = 0; i < movieCount; i++) {
+      const numChars = data.results[i].characters.length;
+      for (let j = 0; j < numChars; j++) {
+        const comString0 = data.results[i].characters[j];
+        if (comString0.slice(-4, -1) === '/18') {
+          finalResult += 1;
+        }
+      }
+    }
+    console.log(finalResult);
   }
-  console.log(count);
 });
