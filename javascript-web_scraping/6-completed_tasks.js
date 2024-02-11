@@ -20,4 +20,8 @@ request(args[2], function (error, response, body) {
     }
     console.log(dictUs);
   }
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 78ad21b4b1370d1d248cc822fe9778d8a54683cb
