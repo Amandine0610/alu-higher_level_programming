@@ -1,13 +1,11 @@
 #!/usr/bin/node
-
 const request = require('request');
+const args = process.argv;
 
-const id = process.argv[2];
-
-request.get(`https://swapi-api.alx-tools.com/api/films/${id}`, function (err, res) {
-  if (err) {
-    console.log(err);
+request(`https://swapi-api.hbtn.io/api/films/${args[2]}`, function (error, response, body) {
+  if (error) {
+    console.log(error);
   } else {
-    console.log(JSON.parse(res.body).title);
+    console.log(JSON.parse(body).title);
   }
 });

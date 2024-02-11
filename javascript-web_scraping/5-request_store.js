@@ -1,18 +1,11 @@
 #!/usr/bin/node
-
 const request = require('request');
 const fs = require('fs');
-const url = process.argv[2];
-const filePath = process.argv[3];
-
-request.get(url, async function (err, res) {
-  if (err) {
-    console.log(err);
+request(process.argv[2], function (error, response, body) {
+  if (error) {
+    console.log(error);
   } else {
-    await fs.writeFile(filePath, res.body, (err) => {
-      if (err) {
-        console.log(err);
-      }
-    });
+    const data = body;
+    fs.writeFileSync(process.argv[3], data, 'utf8');
   }
 });
